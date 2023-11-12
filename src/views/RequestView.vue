@@ -2,18 +2,27 @@
 
 import {ref} from "vue";
 import ModalComponent from "../components/Others/ModalComponent.vue";
+import {useHelpListStore} from "../stores/helpListStore";
 import {useUsersStore} from "../stores/usersStore";
 
-const userStore = useUsersStore();
+const helpListStore = useHelpListStore();
+const usersStore = useUsersStore();
 
 const requestForm = ref({
-    userName: '',
+    userName: usersStore.userInfo.userName,
     category: '',
-    phoneNumber: '',
-    town: '',
+    phoneNumber: usersStore.userInfo.phoneNumber,
+    town: usersStore.userInfo.town,
     title: '',
     text: '',
 })
+
+const handleSendRequest = async () => {
+    await helpListStore.sendRequest(requestForm.value)
+    if(helpListStore.requestStatus === 201) {
+        alert('Ваш запит надіслано')
+    }
+}
 
 </script>
 
@@ -28,7 +37,7 @@ const requestForm = ref({
             <!-- text - end -->
 
             <!-- form - start -->
-            <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+            <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2" @submit.prevent="handleSendRequest">
                 <div class="sm:col-span-2">
                     <label for="username" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Прізвище та імʼя</label>
                     <input v-model="requestForm.userName" name="username" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" placeholder="Іванов Іван"/>
