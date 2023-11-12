@@ -1,7 +1,6 @@
 <script setup>
 
 import {computed} from "vue";
-import moment from 'moment'
 
 const props = defineProps({
     helpListItem: {
@@ -20,8 +19,6 @@ const createdTime = computed(() => {
     const formattedTime = `${dateFromDb.getHours().toString().padStart(2, '0')}:${dateFromDb.getMinutes().toString().padStart(2, '0')}`;
     return `${formattedDate}, ${formattedTime}`;
 });
-
-console.log(createdTime.value)
 
 </script>
 

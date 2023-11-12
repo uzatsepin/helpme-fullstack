@@ -54,7 +54,7 @@ const allUsers = computed(() => {
             <div class="-mx-6 grid grid-cols-2 gap-4 md:-mx-8 md:flex md:divide-x">
                 <div class="px-6 md:px-8">
                     <span class="block text-center text-lg font-bold text-indigo-500 md:text-left md:text-xl">{{
-                        helpListStore.helpListLenght }}</span>
+                        helpListStore.helpListLength }}</span>
                     <span class="block text-center text-sm font-semibold text-gray-800 md:text-left md:text-base">
                         Запитів
                     </span>
